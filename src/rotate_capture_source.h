@@ -1,6 +1,6 @@
 // rotate_capture_source.h
 #pragma once
-
+// LOCATION: /src/
 #include <obs-module.h>
 
 struct rotate_capture_data {
