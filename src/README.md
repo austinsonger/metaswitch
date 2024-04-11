@@ -1,35 +1,7 @@
 # Project Plan
 
 ### plugin-main.c
-1. Add Fields for Managing Timers and Video Device Selection
 
-    Objective: Integrate data structures to manage video capture device selection and timers for device rotation.
-    Steps:
-        Define a global or static structure in plugin-main.c that includes:
-            An array or list to hold video device identifiers or references.
-            A timer identifier or a mechanism to manage rotation intervals.
-        Ensure the structure is accessible where needed, possibly by making it static within the file or global if it needs to be accessed outside.
-
-2. Initialize Additional Fields, Set Up Device Enumeration
-
-    Objective: Initialize the newly added fields and perform device enumeration on plugin load.
-    Steps:
-        In the obs_module_load function, initialize your device list by calling the device enumeration function.
-        Initialize the timer using OBS's timing functions or standard C library timers, depending on your approach.
-
-3. Clean Up Allocated Resources, Stop Timers
-
-    Objective: Ensure graceful cleanup of allocated resources and stopping of timers on plugin unload.
-    Steps:
-        In the obs_module_unload function, add logic to clean up allocated resources.
-        Stop and destroy the timer to prevent memory leaks or dangling pointers.
-
-4. Implement Additional Callbacks
-
-    Objective: Add functionality for video and audio rendering, and adjust source properties like width and height.
-    Steps:
-        Implement callback functions for video and audio rendering within your source's structure.
-        Define functions to get the current width and height of the video feed, which might be static or could vary if switching between devices of different resolutions.
 
 ### rotate_capture_source.c
 1. Implement Functions Declared in rotate_capture_source.h
