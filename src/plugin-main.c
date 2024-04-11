@@ -1,21 +1,3 @@
-/*
-Plugin Name
-Copyright (C) 2024 Austin Songer avsonger@protonmail.com
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along
-with this program. If not, see <https://www.gnu.org/licenses/>
-*/
-
 #include <obs-module.h>
 
 OBS_DECLARE_MODULE()
@@ -25,38 +7,39 @@ OBS_MODULE_USE_DEFAULT_LOCALE("obs-rotate-capture", "en-US")
 
 struct rotate_capture_data {
     obs_source_t *source;
-    // Add more fields as needed for managing your sources and timing
+    // TODO: Add fields for managing timers and video device selection.
 };
 
-// Forward declarations
+// Function prototypes for the source lifecycle
 static const char *rotate_capture_get_name(void *unused);
 static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source);
 static void rotate_capture_destroy(void *data);
 
-// This function is called to get the name of the source
+// Get the name of the source, shown in the UI
 static const char *rotate_capture_get_name(void *unused) {
     UNUSED_PARAMETER(unused);
+    // This name will appear in the OBS source selection list
     return obs_module_text("Rotate Capture");
 }
 
-// This function is called when a new source of this type is created
+// Create a new instance of the source
 static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
     struct rotate_capture_data *data = bzalloc(sizeof(struct rotate_capture_data));
     data->source = source;
-    // Initialize your source data here
+    // TODO: Initialize additional fields here, set up device enumeration, etc.
 
     return data;
 }
 
-// This function is called when the source is destroyed
+// Destroy an instance of the source
 static void rotate_capture_destroy(void *data) {
     struct rotate_capture_data *rotate_data = data;
-    // Clean up your source data here
+    // TODO: Clean up any allocated resources, stop timers, etc.
 
     bfree(rotate_data);
 }
 
-// Define the source info structure
+// Define the structure that OBS uses to register and interact with the source
 static struct obs_source_info rotate_capture_source_info = {
     .id = SOURCE_NAME,
     .type = OBS_SOURCE_TYPE_INPUT,
@@ -64,17 +47,16 @@ static struct obs_source_info rotate_capture_source_info = {
     .get_name = rotate_capture_get_name,
     .create = rotate_capture_create,
     .destroy = rotate_capture_destroy,
-    // Add more function pointers and settings as needed
+    // TODO: Implement and reference additional callbacks as needed, e.g., video render, audio render, get width/height.
 };
 
-// Module load function, OBS calls this to load the plugin
+// Called by OBS to load the plugin
 bool obs_module_load(void) {
     obs_register_source(&rotate_capture_source_info);
     return true;
 }
 
-// Module unload function, OBS calls this to unload the plugin
+// Called by OBS to unload the plugin
 void obs_module_unload(void) {
-    // Clean up tasks as necessary
+    // TODO: Perform any necessary cleanup tasks
 }
-
