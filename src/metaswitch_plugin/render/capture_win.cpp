@@ -65,12 +65,17 @@ public:
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE("video_capture_win", "en-US")
 
+static VideoCaptureWindows* capture = nullptr;
+
 bool obs_module_load() {
-    VideoCaptureWindows* capture = new VideoCaptureWindows();
+    capture = new VideoCaptureWindows();
     capture->start();
     return true;
 }
 
 void obs_module_unload() {
-    delete capture;
+    if (capture) {
+        delete capture;
+        capture = nullptr;
+    }
 }
