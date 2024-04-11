@@ -1,3 +1,33 @@
+# MetaSwitch - OBS Video Capture Device Rotator Plugin
+
+The MetaSwitch - OBS Video Capture Device Rotator Plugin is a custom OBS Studio plugin designed to enhance live streaming and recording setups by automatically rotating through multiple video capture devices at user-defined intervals. This functionality allows broadcasters to create dynamic scenes without manually switching between video sources, ideal for multi-camera setups, showcasing different angles or aspects of the broadcast environment.
+
+# Features
+
+- Automatic Rotation: Seamlessly switches between pre-selected video capture devices at a configurable time interval.
+- Customizable Device List: Allows users to select which video capture devices are included in the rotation cycle.
+- Configurable Interval: Users can set the rotation interval in seconds, adjusting the pace at which the plugin cycles through the video capture devices.
+- Thread-Safe Operations: Ensures that device switching is performed safely without interfering with OBS's streaming/recording operations.
+
+# To-Do List
+
+- [ ] Device Enumeration: Implement functionality to automatically enumerate available video capture devices for user selection.
+- [ ] UI for Device Selection: Develop a user interface within OBS for selecting which devices to include in the rotation.
+- [ ] Rotation Logic: Finalize the logic that handles the smooth transition between video capture devices.
+- [ ] Timing Mechanism: Establish a reliable and accurate timing mechanism for device rotation based on the user-configured interval.
+- [ ] Configuration Persistence: Ensure that user configurations for device selection and rotation interval are saved and restored between OBS sessions.
+- [ ] Cross-Platform Support: Test and adjust the plugin for compatibility across Windows, macOS, and Linux.
+- [ ] Documentation: Expand the README and inline code documentation to cover installation, usage, and configuration details more comprehensively.
+- [ ] Performance Optimization: Analyze and optimize the plugin's performance to minimize impact on OBS's CPU and memory usage.
+- [ ] User Feedback: Collect initial user feedback and address any identified issues or usability improvements.
+
+# Contributing
+Contributions to the MetaSwitch - OBS Video Capture Device Rotator Plugin are welcome! Whether it's feature suggestions, bug reports, or code contributions, please feel free to reach out or submit a pull request.
+
+
+--------------------------------------------------
+
+
 # OBS Plugin Template
 
 ## Introduction
