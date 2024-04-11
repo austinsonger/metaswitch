@@ -2,10 +2,10 @@
 // LOCATION: /src/
 
 #include <obs-module.h>
-#include "rotate_capture_source.h"
 #include <pthread.h>
+#include "rotate_capture_source.h"
 #include <util/platform.h> // For os_gettime_ns()
-
+#include <obs-properties.h> // Added header for OBS properties
 
 const char *rotate_capture_get_name(void *unused) {
     UNUSED_PARAMETER(unused);
@@ -14,6 +14,7 @@ const char *rotate_capture_get_name(void *unused) {
 
 // Initialization function for your source
 void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
+
     rotate_capture_data_t *data = bzalloc(sizeof(rotate_capture_data_t));
     data->source = source;
     pthread_mutex_init(&data->mutex, NULL);
