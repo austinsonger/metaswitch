@@ -2,18 +2,18 @@
 // LOCATION: /src/
 
 #include <obs-module.h>
-#include <pthread.h>
 #include "rotate_capture_source.h"
+#include <pthread.h>
 #include <util/platform.h> // For os_gettime_ns()
 
 
-static const char *rotate_capture_get_name(void *unused) {
-    (void)unused;
+const char *rotate_capture_get_name(void *unused) {
+    UNUSED_PARAMETER(unused);
     return "Rotate Capture Source";
 }
 
 // Initialization function for your source
-static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
+void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
     rotate_capture_data_t *data = bzalloc(sizeof(rotate_capture_data_t));
     data->source = source;
     pthread_mutex_init(&data->mutex, NULL);
@@ -59,12 +59,16 @@ void rotate_capture_update(void *data, obs_data_t *settings) {
     // as shown in the previous guidance
 }
 
-static uint32_t rotate_capture_getwidth(void *data) {
-    return 1920; //  width
+// Removed 'static' for external access (change occurs here)
+uint32_t rotate_capture_getwidth(void *data) {
+    // Your implementation here
+    return 1920; // Example width
 }
 
-static uint32_t rotate_capture_getheight(void *data) {
-    return 1080; //  height
+// Removed 'static' for external access (change occurs here)
+uint32_t rotate_capture_getheight(void *data) {
+    // Your implementation here
+    return 1080; // Example height
 }
 
 static void rotate_capture_audio_render(void *data, uint32_t samples_per_sec, struct obs_audio_data *audio_data) {
@@ -112,15 +116,12 @@ static struct obs_source_info rotate_capture_source_info = {
 };
 
 
-OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE("rotate_capture", "en-US")
 
 bool obs_module_load(void) {
     obs_register_source(&rotate_capture_source_info);
     EnumerateVideoCaptureDevices();
     return true;
 }
-
 
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE("rotate_capture", "en-US")
