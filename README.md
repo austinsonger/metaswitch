@@ -10,12 +10,6 @@ The MetaSwitch - OBS Video Capture Device Rotator Plugin is a custom OBS Studio 
 
 # To-Do List
 
-**Standardize Device List Field:**
-*   Remove either `device_ids` or `device_names` to have a single source of truth for device management.
-
-**Implement and Declare** `**enumerate_video_capture_devices**`**:**
-*   Ensure `enumerate_video_capture_devices` is correctly implemented in a way that fills `device_names` and `num_devices` appropriately.
-*   Declare this function in an appropriate header file if it’s part of another source file.
 
 **Revise Timing Mechanism:**
 *   Review and finalize the timing mechanism for device rotation to ensure it behaves as expected. This may involve more precise time calculations or adjustments based on OBS's frame timing.
