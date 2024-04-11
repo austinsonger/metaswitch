@@ -1,5 +1,5 @@
 #include <obs-module.h>
-# LOCATION: /src/
+// LOCATION: /src/
 
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE("obs-rotate-capture", "en-US")
