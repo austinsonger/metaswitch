@@ -12,9 +12,9 @@ static void rotate_to_next_device(struct rotate_capture_data *data);
 static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
     rotate_capture_data_t *data = bzalloc(sizeof(rotate_capture_data_t));
     data->source = source;
-    struct rotate_capture_data *data = bzalloc(sizeof(struct rotate_capture_data));
-    enumerate_video_capture_devices(&data->device_names, &data->device_count);
     pthread_mutex_init(&data->mutex, NULL); // Initialize mutex
+
+    enumerate_video_capture_devices(&data->device_names, &data->num_devices);
   
     data->device_ids = NULL; // You would dynamically allocate and populate this based on actual devices
     data->device_count = 0;  // And set this accordingly
@@ -37,21 +37,20 @@ static uint32_t rotate_capture_getheight(void *data) {
 // Cleanup function for your source
 static void rotate_capture_destroy(void *ptr) {
     rotate_capture_data_t *data = ptr;
-    struct rotate_capture_data *data = ptr;
-    rotate_capture_data_cleanup(data);
 
-    pthread_mutex_destroy(&data->mutex); // Destroy mutex
+    
 
     // Free device_ids array if allocated
     if (data->device_ids) {
         // Assume device_ids is an array of strings; free each string and then the array itself
-        for (size_t i = 0; i < data->device_count; ++i) {
-            bfree(data->device_ids[i]);
+        for (size_t i = 0; i < data->num_devices; ++i) {
+             bfree(data->device_names[i]);
         }
         bfree(data->device_ids);
     }
-
-    bfree(data); // Free the data structure itself
+    
+    pthread_mutex_destroy(&data->mutex); 
+    bfree(data); // 
 }
 
 static void rotate_capture_video_render(void *data, gs_effect_t *effect) {
@@ -62,20 +61,6 @@ static void rotate_capture_video_render(void *data, gs_effect_t *effect) {
         gs_draw_sprite(NULL, 0, 0, 0);
     }
 }
-
-static struct obs_source_info rotate_capture_source_info = {
-    .id = "rotate_capture_source",
-    .type = OBS_SOURCE_TYPE_INPUT,
-    .output_flags = OBS_SOURCE_VIDEO | OBS_SOURCE_AUDIO, // Add OBS_SOURCE_AUDIO if you implement audio processing
-    .get_name = rotate_capture_get_name,
-    .create = rotate_capture_create,
-    .destroy = rotate_capture_destroy,
-    .get_width = rotate_capture_getwidth,
-    .get_height = rotate_capture_getheight,
-    .video_render = rotate_capture_video_render,
-    // .audio_render = rotate_capture_audio_render, // Uncomment if implementing audio processing
-    // Other fields...
-};
 
 static struct obs_source_info rotate_capture_source_info = {
     .id = "rotate_capture_source",
@@ -109,3 +94,13 @@ static void rotate_to_next_device(struct rotate_capture_data *data) {
 
 // You may need a periodic update function or timing mechanism to call rotate_to_next_device
 // Consider using OBS's timing mechanisms or a separate timing thread depending on your needs
+
+// Registration of the source type with OBS
+OBS_DECLARE_MODULE()
+OBS_MODULE_USE_DEFAULT_LOCALE("rotate_capture", "en-US")
+
+bool obs_module_load(void) {
+    obs_register_source(&rotate_capture_source_info);
+    return true;
+}
+
