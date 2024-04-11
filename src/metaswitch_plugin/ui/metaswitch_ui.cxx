@@ -28,9 +28,13 @@ public:
             return true;  // Continue enumeration
         }, &deviceNames);
 
-        std::cout << "Available Devices:\n";
-        for (auto& name : deviceNames) {
-            std::cout << " - " << name << std::endl;
+        if (deviceNames.empty()) {
+            std::cout << "No available devices found.\n";
+        } else {
+            std::cout << "Available Devices:\n";
+            for (auto& name : deviceNames) {
+                std::cout << " - " << name << std::endl;
+            }
         }
     }
 
@@ -51,14 +55,10 @@ public:
     }
 };
 
-MetaSwitchUI* ui;
-
-OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE("metaswitch", "en-US")
 
 bool obs_module_load() {
-    ui = new MetaSwitchUI();
-    ui->showUI();
+    static MetaSwitchUI ui;
+    ui.showUI();
     return true;
 }
 
