@@ -30,7 +30,7 @@ uint32_t rotate_capture_getheight(void *data);
 void rotate_capture_video_render(void *data, gs_effect_t *effect);
 
 // Additional function prototypes
-void rotate_to_next_device(rotate_capture_data_t *data); // Logic to rotate to the next device
+// void rotate_to_next_device(rotate_capture_data_t *data); // Logic to rotate to the next device
 void enumerate_video_capture_devices(char ***device_names, size_t *num_devices); // Device enumeration logic
 void initialize_rotation_timer(rotate_capture_data_t *data); // Initializes and manages rotation timing
 void cleanup_rotation_timer(rotate_capture_data_t *data); // Cleanup for any timer resources

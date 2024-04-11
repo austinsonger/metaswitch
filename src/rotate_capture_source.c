@@ -6,11 +6,9 @@
 #include "rotate_capture_source.h"
 #include <util/platform.h> // For os_gettime_ns()
 
-// Forward declaration for helper functions if needed
-static void rotate_to_next_device(struct rotate_capture_data *data);
 
 static const char *rotate_capture_get_name(void *unused) {
-    UNUSED_PARAMETER(unused);
+    (void)unused;
     return "Rotate Capture Source";
 }
 
@@ -44,13 +42,18 @@ static void rotate_capture_destroy(void *ptr) {
 
 // Function to define properties shown in OBS UI for this source
 obs_properties_t *rotate_capture_get_properties(void* data) {
+    (void)data; // Use this to explicitly mark 'data' as unused
     obs_properties_t *props = obs_properties_create();
+
+    return props;
     // Implementation for adding countdown clock configuration
-    // as shown in the previous guidance
+
 }
 
 // Function to apply settings from the OBS UI to your source
 void rotate_capture_update(void *data, obs_data_t *settings) {
+    (void)data;  // Cast to void to avoid unused parameter warning
+    (void)settings;  // Ditto
     rotate_capture_data_t *rotate_data = data;
     // Implementation for applying countdown clock settings
     // as shown in the previous guidance
@@ -117,3 +120,7 @@ bool obs_module_load(void) {
     EnumerateVideoCaptureDevices();
     return true;
 }
+
+
+OBS_DECLARE_MODULE()
+OBS_MODULE_USE_DEFAULT_LOCALE("rotate_capture", "en-US")

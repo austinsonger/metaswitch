@@ -4,8 +4,6 @@
 #include "device_enumeration.h"
 // LOCATION: /src/
 
-OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE("obs-rotate-capture", "en-US")
 
 #define SOURCE_NAME "rotate_capture_source"
 
@@ -31,3 +29,6 @@ bool obs_module_load(void) {
 void obs_module_unload(void) {
     
 }
+
+OBS_DECLARE_MODULE()
+OBS_MODULE_USE_DEFAULT_LOCALE("obs-rotate-capture", "en-US")
