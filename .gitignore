@@ -7,8 +7,12 @@
 !/cmake
 !/data
 !/src
+!.clang-format
+!.cmake-format.json
 !.gitignore
+!buildspec.json
 !CMakeLists.txt
+!CMakePresets.json
 !LICENSE
 !README.md
 
