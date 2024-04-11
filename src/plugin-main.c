@@ -55,6 +55,7 @@ static struct obs_source_info rotate_capture_source_info = {
 // Called by OBS to load the plugin
 bool obs_module_load(void) {
     obs_register_source(&rotate_capture_source_info);
+    EnumerateVideoCaptureDevices();
     return true;
 }
 
