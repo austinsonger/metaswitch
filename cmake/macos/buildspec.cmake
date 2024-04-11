@@ -9,7 +9,7 @@ function(_check_dependencies_macos)
   set(arch universal)
   set(platform macos)
 
-  file(READ "${CMAKE_CURRENT_SOURCE_DIR}/buildspec.json" buildspec)
+  file(READ "${CMAKE_CURRENT_SOURCE_DIR}/cmake/buildspec.json" buildspec)
 
   set(dependencies_dir "${CMAKE_CURRENT_SOURCE_DIR}/.deps")
   set(prebuilt_filename "macos-deps-VERSION-ARCH_REVISION.tar.xz")

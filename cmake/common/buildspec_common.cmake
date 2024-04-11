@@ -111,7 +111,7 @@ endfunction()
 # _check_dependencies: Fetch and extract pre-built OBS build dependencies
 function(_check_dependencies)
   if(NOT buildspec)
-    file(READ "${CMAKE_CURRENT_SOURCE_DIR}/buildspec.json" buildspec)
+    file(READ "${CMAKE_CURRENT_SOURCE_DIR}/cmake/buildspec.json" buildspec)
   endif()
 
   # cmake-format: off

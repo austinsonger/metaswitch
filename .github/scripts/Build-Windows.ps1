@@ -35,7 +35,7 @@ function Build {
 
     $ScriptHome = $PSScriptRoot
     $ProjectRoot = Resolve-Path -Path "$PSScriptRoot/../.."
-    $BuildSpecFile = "${ProjectRoot}/buildspec.json"
+    $BuildSpecFile = "${ProjectRoot}/cmake/buildspec.json"
 
     $UtilityFunctions = Get-ChildItem -Path $PSScriptRoot/utils.pwsh/*.ps1 -Recurse
 
