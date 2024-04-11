@@ -28,6 +28,20 @@ static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
     return data;
 }
 
+static struct obs_source_info rotate_capture_source_info = {
+    .id = "rotate_capture_source",
+    .type = OBS_SOURCE_TYPE_INPUT,
+    .output_flags = OBS_SOURCE_VIDEO | OBS_SOURCE_AUDIO, // Add OBS_SOURCE_AUDIO if you implement audio processing
+    .get_name = rotate_capture_get_name,
+    .create = rotate_capture_create,
+    .destroy = rotate_capture_destroy,
+    .get_width = rotate_capture_getwidth,
+    .get_height = rotate_capture_getheight,
+    .video_render = rotate_capture_video_render,
+    // .audio_render = rotate_capture_audio_render, // Uncomment if implementing audio processing
+    // Other fields...
+};
+
 // Example cleanup function for your source
 static void rotate_capture_destroy(void *ptr) {
     struct rotate_capture_data *data = ptr;
