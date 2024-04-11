@@ -33,16 +33,16 @@
     },
     "platformConfig": {
         "macos": {
-            "bundleId": "com.example.obs-plugintemplate"
+            "bundleId": "com.obsproject.Studio.Plugin.MetaSwitch"
         }
     },
-    "name": "obs-plugintemplate",
-    "displayName": "OBS Plugin Template",
+    "name": "metaswitch",
+    "displayName": "MetaSwitch",
     "version": "1.0.0",
-    "author": "Your Name Here",
-    "website": "https://example.com",
-    "email": "me@example.com",
+    "author": "Austin Songer",
+    "website": "https://songer.pro",
+    "email": "austin@songer.pro",
     "uuids": {
-        "windowsApp": "00000000-0000-0000-0000-000000000000"
+        "windowsApp": "87147b02-f817-11ee-8b1d-325096b39f47"
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="addon">
-	<id>com.obsproject.Studio.Plugin.metaswitch</id>
+	<id>com.obsproject.Studio.Plugin.MetaSwitch</id>
 	<extends>com.obsproject.Studio</extends>
 	<name>MetaSwitch</name>
 	<summary>Video Rotating Video Feed is designed to enhance live streaming and recording setups by automatically rotating through multiple video capture devices at user-defined intervals.</summary>
