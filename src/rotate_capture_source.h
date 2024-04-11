@@ -18,6 +18,9 @@ typedef struct rotate_capture_data {
     char* countdown_position;         // Position of the countdown ("top-left", "top-right", "bottom-left", "bottom-right")
 } rotate_capture_data_t;
 
+obs_properties_t *rotate_capture_get_properties(void *data);
+void rotate_capture_update(void *data, obs_data_t *settings);
+
 // Standard OBS source lifecycle functions
 const char *rotate_capture_get_name(void *unused);
 void *rotate_capture_create(obs_data_t *settings, obs_source_t *source);
