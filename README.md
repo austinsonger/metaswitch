@@ -4,7 +4,8 @@ MetaSwitch - Rotating Camera Feed is designed to enhance live streaming and reco
 
 
 
-FILE STRUCTURE
+## FILE STRUCTURE
+
 ```
 ├── src                     # Source code for the plugin
 │   ├── CMakeLists.txt      # CMake file for building the plugin on Linux and macOS
@@ -32,7 +33,18 @@ FILE STRUCTURE
 └── doc                      # Documentation for the plugin
 ```
 
+#### Key Components
 
+- src/: Contains all the source code required for the plugin's functionality, including scripts for building the project.
+- include/: Holds the header files which declare interfaces and integration points for different components of the plugin.
+- resources/: Stores static assets like images which are used within the plugin's UI.
+- plugins/: The location where the compiled plugin file (metaswitch_plugin.so) is placed, ready to be loaded by OBS Studio.
+- tests/: Contains code that tests the various functionalities of the plugin, ensuring reliability and stability.
+- build/: Used by CMake during the build process to store intermediary files.
+- doc/: Provides detailed documentation, guides, and tutorials for using or developing the plugin further.
+
+
+<!--
 
 ## Set Up
 
@@ -201,4 +213,4 @@ To use code signing on GitHub Actions, the certificate and associated informatio
 # Contributing
 Contributions to the MetaSwitch - OBS Video Capture Device Rotator Plugin are welcome! Whether it's feature suggestions, bug reports, or code contributions, please feel free to reach out or submit a pull request.
 
-
+--!>
