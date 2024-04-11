@@ -6,14 +6,13 @@
 #include <pthread.h> // Ensure this include is here for pthread_mutex_t
 
 typedef struct rotate_capture_data {
-    obs_source_t *source;  // Reference to the OBS source itself, useful for API calls.
-    char **device_names;   // Array of device names to rotate through.
-    size_t num_devices;    // Number of devices in the rotation.
-    size_t current_index;  // Index of the currently active device.
-    uint64_t rotate_interval_ms; // Rotation interval in milliseconds.
-    pthread_mutex_t mutex; // Mutex for thread-safe access to the structure.
-    uint64_t last_switch_time_ms; // Last time the device was switched, to manage rotation timing.
-    // Optional: fields for device-specific settings, like resolution or framerate.
+    obs_source_t *source;           // Reference to the OBS source itself, useful for API calls.
+    char **device_names;            // Array of device names to rotate through.
+    size_t num_devices;             // Number of devices in the rotation.
+    size_t current_index;           // Index of the currently active device.
+    uint64_t rotate_interval_ms;    // Rotation interval in milliseconds.
+    pthread_mutex_t mutex;          // Mutex for thread-safe access to the structure.
+    uint64_t last_switch_time_ms;   // Last time the device was switched, to manage rotation timing.
 } rotate_capture_data_t;
 
 // Function declarations for source lifecycle management
