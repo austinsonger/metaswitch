@@ -22,8 +22,8 @@ if(ENABLE_FRONTEND_API)
 endif()
 
 if(ENABLE_QT)
-  find_qt(COMPONENTS Widgets Core)
-  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt::Core Qt::Widgets)
+  find_package(Qt5 COMPONENTS Widgets Core REQUIRED) # Updated to explicitly find Qt5 and required components
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt5::Core Qt5::Widgets)
   target_compile_options(
     ${CMAKE_PROJECT_NAME} PRIVATE $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-quoted-include-in-framework-header
                                   -Wno-comma>)
@@ -34,6 +34,16 @@ if(ENABLE_QT)
                AUTORCC ON)
 endif()
 
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
+# Include the main plugin file and the source file for the custom source
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+  src/plugin-main.c
+  src/rotate_capture_source.c # Include your source file
+  # Add additional source files here
+)
 
-set_target_properties_plugin(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})
+
+# Include directories for header files
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+  ${CMAKE_SOURCE_DIR}/src
+)
