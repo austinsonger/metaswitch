@@ -42,6 +42,20 @@ static void rotate_capture_destroy(void *ptr) {
     bfree(data);
 }
 
+// Function to define properties shown in OBS UI for this source
+obs_properties_t *rotate_capture_get_properties(void* data) {
+    obs_properties_t *props = obs_properties_create();
+    // Implementation for adding countdown clock configuration
+    // as shown in the previous guidance
+}
+
+// Function to apply settings from the OBS UI to your source
+void rotate_capture_update(void *data, obs_data_t *settings) {
+    rotate_capture_data_t *rotate_data = data;
+    // Implementation for applying countdown clock settings
+    // as shown in the previous guidance
+}
+
 static uint32_t rotate_capture_getwidth(void *data) {
     return 1920; //  width
 }
