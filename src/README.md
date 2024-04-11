@@ -1,19 +1,7 @@
 # Project Plan
 
 ### plugin-main.c
-
-
 ### rotate_capture_source.c
-
-
-2. Include Logic for Handling Source Rotation and Timers
-
-    Objective: Implement the core functionality for rotating between video capture sources based on timers.
-    Steps:
-        Define a function or mechanism to switch the active video capture device.
-        Implement timer logic that triggers the switch function at defined intervals.
-        Ensure synchronization and thread safety, as OBS sources may be interacted with from multiple threads.
-
 ### rotate_capture_source.h
 1. Add Fields for Managing Timers, Sources
 
