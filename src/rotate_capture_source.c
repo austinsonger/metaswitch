@@ -4,6 +4,7 @@
 #include <obs-module.h>
 #include <pthread.h>
 #include "rotate_capture_source.h"
+#include <util/platform.h> // For os_gettime_ns()
 
 // Forward declaration for helper functions if needed
 static void rotate_to_next_device(struct rotate_capture_data *data);
@@ -53,27 +54,31 @@ static void rotate_capture_audio_render(void *data, uint32_t samples_per_sec, st
     // Your audio processing here
 
 static void rotate_capture_video_render(void *data, gs_effect_t *effect) {
-    UNUSED_PARAMETER(data);
-    UNUSED_PARAMETER(effect);
-    // Implement rendering logic here, e.g., drawing a placeholder or the selected video capture device
-    struct rotate_capture_data *rotate_data = data;
-    gs_effect_set_vec4(rotate_data->color_effect_param, &(vec4){1.0f, 0.0f, 0.0f, 1.0f});
-    while (gs_effect_loop(rotate_data->color_effect, "Draw")) {
-        gs_draw_sprite(NULL, 0, 0, 0);
+    rotate_capture_data_t *rotate_data = data;
+
+    uint64_t now = os_gettime_ns();
+    if (now - rotate_data->last_switch_time_ms >= rotate_data->rotate_interval_ms * 1000000) {
+        rotate_to_next_device(rotate_data);
+        rotate_data->last_switch_time_ms = now;
     }
+
+    // Placeholder render logic
+    UNUSED_PARAMETER(effect);
+    gs_clear(GS_CLEAR_COLOR, &(vec4){0.0f, 0.0f, 0.0f, 0.0f}, 0.0f, 0);
 }
 
 // Function to switch to the next device
 // This should be called periodically based on the rotation interval
-static void rotate_to_next_device(struct rotate_capture_data *data) {
+static void rotate_to_next_device(rotate_capture_data_t *data) {
     pthread_mutex_lock(&data->mutex);
-    // Increment current_device_index, wrap around if at the end of the list
     if (data->num_devices > 0) {
         data->current_index = (data->current_index + 1) % data->num_devices;
-        // TODO: Implement logic to switch to the device indicated by current_device_index
+        blog(LOG_INFO, "Switched to device: %s", data->device_names[data->current_index]);
+        // Here you would add logic to switch the visible source in OBS
     }
     pthread_mutex_unlock(&data->mutex);
 }
+
 
 static struct obs_source_info rotate_capture_source_info = {
     .id = "rotate_capture_source",
