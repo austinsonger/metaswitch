@@ -2,14 +2,13 @@
 
 MetaSwitch - Video Rotating Video Feed is designed to enhance live streaming and recording setups by automatically rotating through multiple video capture devices at user-defined intervals. This functionality allows broadcasters to create dynamic scenes without manually switching between video sources, ideal for multi-camera setups, showcasing different angles or aspects of the broadcast environment.
 
-# Features
+## Features
 - Automatic Rotation: Seamlessly switches between pre-selected video capture devices at a configurable time interval.
 - Customizable Device List: Allows users to select which video capture devices are included in the rotation cycle.
 - Configurable Interval: Users can set the rotation interval in seconds, adjusting the pace at which the plugin cycles through the video capture devices.
 - Thread-Safe Operations: Ensures that device switching is performed safely without interfering with OBS's streaming/recording operations.
 
-# To-Do List
-
+## To-Do List
 
 **Revise Timing Mechanism:**
 *   Review and finalize the timing mechanism for device rotation to ensure it behaves as expected. This may involve more precise time calculations or adjustments based on OBS's frame timing.
@@ -21,13 +20,8 @@ MetaSwitch - Video Rotating Video Feed is designed to enhance live streaming and
 **Documentation and Comments:**
 *   Add comments explaining the purpose and logic of each function and significant code blocks, especially around complex logic like device rotation and timing.
 
-# Introduction
 
-* Boilerplate plugin source code
-* A CMake project file
-* GitHub Actions workflows and repository actions
-
-# Set Up
+## Set Up
 
 The plugin project is set up using the included `buildspec.json` file. The following fields should be customized for an actual plugin:
 
@@ -43,17 +37,17 @@ The plugin project is set up using the included `buildspec.json` file. The follo
 
 These values are read and processed automatically by the CMake build scripts, so no further adjustments in other files are needed.
 
-### Platform Configuration
+## Platform Configuration
 
 Platform-specific settings are set up in the `platformConfig` section of the buildspec file:
 
 * `bundleId`: macOS bundle identifier for the plugin. Should be unique and follow reverse domain name notation.
 
-### Set Up Build Dependencies
+## Set Up Build Dependencies
 
 Just like OBS Studio itself, plugins need to be built using dependencies available either via the `obs-deps` repository (Windows and macOS) or via a distribution's package system (Linux).
 
-#### Choose An OBS Studio Version
+## Choose An OBS Studio Version
 
 By default the plugin template specifies the most current official OBS Studio version in the `buildspec.json` file, which makes most sense for plugins at the start of development. As far as updating the targeted OBS Studio version is concerned, a few things need to be considered:
 
@@ -63,7 +57,7 @@ By default the plugin template specifies the most current official OBS Studio ve
 
 On Linux, the version used for development might be decided by the specific version available via a distribution's package management system, so OBS Studio compatibility for plugins might be determined by those versions instead.
 
-#### Windows and macOS
+## Windows and macOS
 
 Windows and macOS dependency downloads are configured in the `buildspec.json` file:
 
@@ -77,7 +71,7 @@ The values should be kept in sync with OBS Studio releases and the `buildspec.js
 
 To update a dependency, change the `version` and associated `hashes` entries to match the new version. The used hash algorithm is `sha256`.
 
-#### Linux
+## Linux
 
 Linux dependencies need to be resolved using the package management tools appropriate for the local distribution. As an example, building on Ubuntu requires the following packages to be installed:
 
@@ -93,7 +87,7 @@ Linux dependencies need to be resolved using the package management tools approp
     * `libqt6svg6-dev`
     * `qt6-base-private-dev`
 
-## Build System Configuration
+### Build System Configuration
 
 To create a build configuration, `cmake` needs to be installed on the system. The plugin template supports CMake presets using the `CMakePresets.json` file and ships with default presets:
 
@@ -140,7 +134,7 @@ Additional build system options are available to developers:
 * `CODESIGN_IDENTITY`: Name of the Apple Developer certificate that should be used for code signing
 * `CODESIGN_TEAM`: Apple Developer team ID that should be used for code signing
 
-## GitHub Actions & CI
+### GitHub Actions & CI
 
 Default GitHub Actions workflows are available for the following repository actions:
 
@@ -152,15 +146,15 @@ Default GitHub Actions workflows are available for the following repository acti
 
 The workflows make use of GitHub repository actions (contained in `.github/actions`) and build scripts (contained in `.github/scripts`) which are not needed for local development, but might need to be adjusted if additional/different steps are required to build the plugin.
 
-### Retrieving build artifacts
+#### Retrieving build artifacts
 
 Successful builds on GitHub Actions will produce build artifacts that can be downloaded for testing. These artifacts are commonly simple archives and will not contain package installers or installation programs.
 
-### Building a Release
+#### Building a Release
 
 To create a release, an appropriately named tag needs to be pushed to the `main`/`master` branch using semantic versioning (e.g., `12.3.4`, `23.4.5-beta2`). A draft release will be created on the associated repository with generated installer packages or installation programs attached as release artifacts.
 
-## Signing and Notarizing on macOS
+### Signing and Notarizing on macOS
 
 Plugins released for macOS should be codesigned and notarized with a valid Apple Developer ID for best user experience. To set this up, the private and personal key of a **paid Apple Developer ID** need to be downloaded from the Apple Developer portal:
 
@@ -174,7 +168,7 @@ The developer certificate will usually carry a name similar in form to
 
 This entire string should be specified as `CODESIGN_IDENTITY`, the `LETTERS_AND_NUMBERS` part as `CODESIGN_TEAM` to CMake to set up codesigning properly.
 
-### GitHub Actions Set Up
+#### GitHub Actions Set Up
 
 To use code signing on GitHub Actions, the certificate and associated information need to be set up as _repository secrets_ in the GitHub repository's settings.
 
