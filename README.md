@@ -1,6 +1,6 @@
 # MetaSwitch - Rotating Video Feed
 
-MetaSwitch - Video Rotating Video Feed is designed to enhance live streaming and recording setups by automatically rotating through multiple video capture devices at user-defined intervals. This functionality allows broadcasters to create dynamic scenes without manually switching between video sources, ideal for multi-camera setups, showcasing different angles or aspects of the broadcast environment.
+MetaSwitch - Rotating Camera Feed is designed to enhance live streaming and recording setups by automatically rotating through multiple video capture devices at user-defined intervals. This functionality allows broadcasters to create dynamic scenes without manually switching between video sources, ideal for multi-camera setups, showcasing different angles or aspects of the broadcast environment.
 
 ## Features
 - Automatic Rotation: Seamlessly switches between pre-selected video capture devices at a configurable time interval.

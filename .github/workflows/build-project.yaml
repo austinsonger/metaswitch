@@ -62,8 +62,8 @@ jobs:
           done
           echo "commitHash=${GITHUB_SHA:0:9}" >> $GITHUB_OUTPUT
 
-          plugin_name="$(grep 'name' /cmake/buildspec.json | sed -E -e 's/^.+"name":[^"]+"(.+)",?$/\1/g')"
-          plugin_display_name="$(grep 'displayName' /cmake/buildspec.json | sed -E -e 's/^.+"displayName":[^"]+"(.+)",?$/\1/g' || echo "")"
+          plugin_name="$(grep 'name' buildspec.json | sed -E -e 's/^.+"name":[^"]+"(.+)",?$/\1/g')"
+          plugin_display_name="$(grep 'displayName' buildspec.json | sed -E -e 's/^.+"displayName":[^"]+"(.+)",?$/\1/g' || echo "")"
 
           if [[ "${plugin_display_name}" ]]; then
             echo "pluginName=${plugin_display_name}" >> $GITHUB_OUTPUT
@@ -99,7 +99,7 @@ jobs:
           local product_name
           local product_version
           read -r product_name product_version <<< \
-            "$(jq -r '. | {name, version} | join(" ")' /cmake/buildspec.json)"
+            "$(jq -r '. | {name, version} | join(" ")' buildspec.json)"
 
           print "pluginName=${product_name}" >> $GITHUB_OUTPUT
           print "pluginVersion=${product_version}" >> $GITHUB_OUTPUT
@@ -181,7 +181,7 @@ jobs:
           if [[ "${RUNNER_DEBUG}" ]]; then set -x; fi
 
           read -r product_name product_version <<< \
-            "$(jq -r '. | {name, version} | join(" ")' /cmake/buildspec.json)"
+            "$(jq -r '. | {name, version} | join(" ")' buildspec.json)"
 
           echo "pluginName=${product_name}" >> $GITHUB_OUTPUT
           echo "pluginVersion=${product_version}" >> $GITHUB_OUTPUT
@@ -250,7 +250,7 @@ jobs:
             Set-PSDebug -Trace 1
           }
 
-          $BuildSpec = Get-Content -Path /cmake/buildspec.json -Raw | ConvertFrom-Json
+          $BuildSpec = Get-Content -Path buildspec.json -Raw | ConvertFrom-Json
           $ProductName = $BuildSpec.name
           $ProductVersion = $BuildSpec.version
 
