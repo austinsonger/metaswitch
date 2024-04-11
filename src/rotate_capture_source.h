@@ -12,7 +12,7 @@ struct rotate_capture_data {
     pthread_mutex_t mutex; // Mutex for thread-safe access to the structure.
     uint64_t last_switch_time_ms; // Last time the device was switched, to manage rotation timing.
     // Optional: fields for device-specific settings, like resolution or framerate.
-};
+} rotate_capture_data_t;
 
 
 // Function declarations for source lifecycle management
