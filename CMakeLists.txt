@@ -36,7 +36,7 @@ endif()
 
 # Include the main plugin file and the source file for the custom source
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-  src/plugin-main.c
+  src/main.c
   src/rotate_capture_source.c
   src/device_enumeration.c  # Add this line
 )
