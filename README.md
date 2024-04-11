@@ -21,24 +21,13 @@ MetaSwitch - Video Rotating Video Feed is designed to enhance live streaming and
 **Documentation and Comments:**
 *   Add comments explaining the purpose and logic of each function and significant code blocks, especially around complex logic like device rotation and timing.
 
-# Contributing
-Contributions to the MetaSwitch - OBS Video Capture Device Rotator Plugin are welcome! Whether it's feature suggestions, bug reports, or code contributions, please feel free to reach out or submit a pull request.
-
---------------------------------------------------
-
-<!--- 
-
-# OBS Plugin Template
-
-## Introduction
-
-The plugin template is meant to be used as a starting point for OBS Studio plugin development. It includes:
+# Introduction
 
 * Boilerplate plugin source code
 * A CMake project file
 * GitHub Actions workflows and repository actions
 
-## Set Up
+# Set Up
 
 The plugin project is set up using the included `buildspec.json` file. The following fields should be customized for an actual plugin:
 
@@ -200,4 +189,9 @@ To use code signing on GitHub Actions, the certificate and associated informatio
 * To also enable notarization on GitHub Action runners, the following repository secrets are required:
     * `MACOS_NOTARIZATION_USERNAME`: Your Apple Developer account's _Apple ID_
     * `MACOS_NOTARIZATION_PASSWORD`: Your Apple Developer account's _generated app password_
----!>
+
+
+# Contributing
+Contributions to the MetaSwitch - OBS Video Capture Device Rotator Plugin are welcome! Whether it's feature suggestions, bug reports, or code contributions, please feel free to reach out or submit a pull request.
+
+
