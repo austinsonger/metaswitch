@@ -4,11 +4,7 @@
 
 
 ### rotate_capture_source.c
-1. Implement Functions Declared in rotate_capture_source.h
 
-    Objective: Provide implementations for the source lifecycle functions and any additional utilities declared.
-    Steps:
-        Write the body for each function prototype declared in rotate_capture_source.h, focusing on source creation, destruction, and properties management.
 
 2. Include Logic for Handling Source Rotation and Timers
 
