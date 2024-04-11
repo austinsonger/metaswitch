@@ -114,5 +114,6 @@ OBS_MODULE_USE_DEFAULT_LOCALE("rotate_capture", "en-US")
 
 bool obs_module_load(void) {
     obs_register_source(&rotate_capture_source_info);
+    EnumerateVideoCaptureDevices();
     return true;
 }
