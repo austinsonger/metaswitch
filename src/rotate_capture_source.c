@@ -11,7 +11,10 @@ static void rotate_to_next_device(struct rotate_capture_data *data);
 // Example initialization function for your source
 static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
     struct rotate_capture_data *data = bzalloc(sizeof(struct rotate_capture_data));
+    enumerate_video_capture_devices(&data->device_names, &data->device_count);
+    data->current_index = 0; // Start with the first device
     data->source = source;
+    data->rotate_interval_ms = 5000; 
     pthread_mutex_init(&data->mutex, NULL); // Initialize mutex
 
     // TODO: Populate device_ids and device_count based on user settings or automatic enumeration
