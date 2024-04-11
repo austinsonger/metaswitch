@@ -4,7 +4,7 @@
 #include <util/threading.h>
 
 static std::unique_ptr<Renderer> global_renderer;
-static void get_name(void*);
+static const char* get_name(void*);
 static void* create(obs_data_t*, obs_source_t*);
 static void destroy(void*);
 static void render(void*, gs_effect_t*);
@@ -26,7 +26,7 @@ public:
         os_event_destroy(mutex);
     }
 
-    static void get_name(void*) {
+    static const char* get_name(void*) {
         return "MetaSwitch Renderer";
     }
 
@@ -61,7 +61,7 @@ public:
         if (!source) return;
 
         obs_source_frame frame = {};
-        frame.data[0] = nullptr;
+        frame.data[0] = nullptr;  // Consider filling this with valid data if necessary.
         frame.width = 1920;
         frame.height = 1080;
         frame.format = VIDEO_FORMAT_RGBA;
