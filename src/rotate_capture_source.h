@@ -20,14 +20,8 @@ typedef struct rotate_capture_data {
 const char *rotate_capture_get_name(void *unused);
 void *rotate_capture_create(obs_data_t *settings, obs_source_t *source);
 void rotate_capture_destroy(void *data);
-
-// Additional function declarations for OBS source functionality
 uint32_t rotate_capture_getwidth(void *data);
 uint32_t rotate_capture_getheight(void *data);
 void rotate_capture_video_render(void *data, gs_effect_t *effect);
 
-// If handling audio, declare the audio render callback
-// void rotate_capture_audio_render(void *data, uint32_t samples_per_sec, struct obs_audio_data *audio_data);
-
-// Declaration for any helper functions, such as device rotation logic
 void rotate_to_next_device(rotate_capture_data_t *data);
