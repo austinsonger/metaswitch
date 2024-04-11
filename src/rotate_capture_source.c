@@ -31,6 +31,7 @@ static void *rotate_capture_create(obs_data_t *settings, obs_source_t *source) {
 // Example cleanup function for your source
 static void rotate_capture_destroy(void *ptr) {
     struct rotate_capture_data *data = ptr;
+    rotate_capture_data_cleanup(data);
 
     pthread_mutex_destroy(&data->mutex); // Destroy mutex
 
