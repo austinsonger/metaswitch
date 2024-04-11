@@ -40,7 +40,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Add common module directories to default search path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/common")
 
-file(READ "${CMAKE_CURRENT_SOURCE_DIR}/cmake/buildspec.json" buildspec)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/buildspec.json" buildspec)
 
 # cmake-format: off
 string(JSON _name GET ${buildspec} name)
