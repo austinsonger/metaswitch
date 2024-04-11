@@ -1,4 +1,4 @@
-// plugin-main.c
+// main.c
 
 #include <obs-module.h>
 #include "device_enumeration.h"
