@@ -1,4 +1,5 @@
 #include <obs-module.h>
+#include "device_enumeration.h"
 // LOCATION: /src/
 
 OBS_DECLARE_MODULE()
