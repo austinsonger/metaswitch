@@ -13,6 +13,9 @@ typedef struct rotate_capture_data {
     uint64_t rotate_interval_ms;    // Rotation interval in milliseconds.
     pthread_mutex_t mutex;          // Mutex for thread-safe access to the structure.
     uint64_t last_switch_time_ms;   // Last time the device was switched, to manage rotation timing.
+    uint64_t countdown_start_time_ms; // When the current countdown started
+    bool show_countdown;              // Whether to show the countdown
+    char* countdown_position;         // Position of the countdown ("top-left", "top-right", "bottom-left", "bottom-right")
 } rotate_capture_data_t;
 
 // Standard OBS source lifecycle functions
