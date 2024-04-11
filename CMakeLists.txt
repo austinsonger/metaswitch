@@ -12,10 +12,13 @@ include(compilerconfig)
 include(defaults)
 include(helpers)
 
-add_library(${CMAKE_PROJECT_NAME} MODULE)
+add_library(${CMAKE_PROJECT_NAME}_lib MODULE src/metaswitch_plugin/*.cpp)
 
 find_package(libobs REQUIRED)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs)
+
+find_package(OBS REQUIRED) # find the OBS SDK and link it into our build
+target_link_libraries(${CMAKE_PROJECT_NAME}_lib PRIVATE OBS::obs-plugin)
 
 if(ENABLE_FRONTEND_API)
   find_package(obs-frontend-api REQUIRED)
@@ -40,14 +43,12 @@ if(ENABLE_QT)
                AUTORCC ON)
 endif()
 
-# Include the main plugin file and the source file for the custom source
-target_sources(
-  ${CMAKE_PROJECT_NAME} PRIVATE src/main.c src/rotate_capture_source.c
-                                src/device_enumeration.c # Add this line
-)
+
 
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})
 
+
+
 # Include directories for header files
-target_include_directories(${CMAKE_PROJECT_NAME}
-                           PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_include_directories(${CMAKE_PROJECT_NAME}_lib
+                           PRIVATE ${CMAKE_SOURCE_DIR}/src/metaswitch_plugin/include)
